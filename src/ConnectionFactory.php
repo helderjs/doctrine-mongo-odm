@@ -7,56 +7,8 @@ use Doctrine\ODM\MongoDB\Configuration;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Interop\Container\ContainerInterface;
 
-class ConnectionFactory
+class ConnectionFactory extends AbstractFactory
 {
-    /**
-     * The name of the configuration
-     *
-     * @var string
-     */
-    private $default;
-
-    /**
-     * ConnectionFactory constructor.
-     * Set the default configuration
-     *
-     * @param string $default
-     */
-    public function __construct($default = 'odm_default')
-    {
-        $this->default = $default;
-    }
-
-    /**
-     * Get the configuration options
-     *
-     * @param ContainerInterface $container
-     * @param $name
-     * @return mixed
-     */
-    private function getDoctrineConfiguration(ContainerInterface $container, $name)
-    {
-        $options = [];
-
-        if ($container->has('doctrine')) {
-            $options = $container->get('doctrine');
-        }
-
-        if ($container->has('config')) {
-            $config = $container->get('config');
-
-            if (isset($config['doctrine'])) {
-                $options = $config['doctrine'];
-            }
-        }
-
-        if (!empty($options) && isset($options[$name])) {
-            $options = $options[$name];
-        }
-
-        return isset($options[$this->default]) ? $options[$this->default] : $options;
-    }
-
     /**
      * @param ContainerInterface $container
      * @return Connection

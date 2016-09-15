@@ -215,14 +215,15 @@ class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase
          * @var Connection $connection1
          */
         $connection1 = $factory1($this->container->reveal());
+
         $this->container->has('doctrine')->willReturn(false);
-        $this->container->has('config')->willReturn(true);
-        $this->container->get('config')->willReturn($options2);
+        $this->container->get('doctrine')->willReturn($options2);
+        $this->container->has('config')->willReturn(false);
         $this->container->has(Configuration::class)->willReturn(false);
         /**
          * @var Connection $connection2
          */
-        $connection2 = $factory1($this->container->reveal());
+        $connection2 = $factory2($this->container->reveal());
 
         $this->assertInstanceOf(Connection::class, $connection1);
         $this->assertInstanceOf(Connection::class, $connection2);
