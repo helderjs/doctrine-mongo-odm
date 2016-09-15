@@ -97,6 +97,7 @@ class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn($options);
+        $this->container->has(Configuration::class)->willReturn(true);
         $this->container->get(Configuration::class)->willReturn($configuration->reveal());
         $connection = $factory($this->container->reveal());
 
@@ -129,7 +130,39 @@ class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn($options);
+        $this->container->has(Configuration::class)->willReturn(true);
         $this->container->get(Configuration::class)->willReturn($configuration->reveal());
+        $connection = $factory($this->container->reveal());
+
+        $this->assertInstanceOf(Connection::class, $connection);
+    }
+
+    public function testCallingFactoryWithDoctrineWithoutConfigurationClass()
+    {
+        $options = [
+            'doctrine' => [
+                'default' => 'odm_default',
+                'connection' => [
+                    'odm_default' => [
+                        'server' => 'localhost',
+                        'port' => '27017',
+                        'user' => 'user',
+                        'password' => 'password',
+                        'dbname' => 'mydb',
+                        'options' => [
+                            'journal' => true,
+                            'readPreference' => 'secondary',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $factory = new ConnectionFactory();
+
+        $this->container->has('config')->willReturn(true);
+        $this->container->get('config')->willReturn($options);
+        $this->container->has(Configuration::class)->willReturn(false);
         $connection = $factory($this->container->reveal());
 
         $this->assertInstanceOf(Connection::class, $connection);

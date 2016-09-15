@@ -59,11 +59,15 @@ class ConnectionFactory
                     );
                 }
             }
-            /** @var $configuration \Doctrine\ODM\MongoDB\Configuration */
-            $configuration = $container->get(Configuration::class);
-            // Set defaultDB to $dbName, if it's not defined in configuration
-            if (null === $configuration->getDefaultDB()) {
-                $configuration->setDefaultDB($dbName);
+
+            $configuration = null;
+            if ($container->has(Configuration::class)) {
+                /** @var $configuration \Doctrine\ODM\MongoDB\Configuration */
+                $configuration = $container->get(Configuration::class);
+                // Set defaultDB to $dbName, if it's not defined in configuration
+                if (null === $configuration->getDefaultDB()) {
+                    $configuration->setDefaultDB($dbName);
+                }
             }
 
             return new Connection($connectionString, $options[$default]['options'], $configuration);
