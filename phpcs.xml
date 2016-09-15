@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="PSR-2 coding Standard">
+    <description>Coding standard based on PSR-2.</description>
+
+    <!-- display progress -->
+    <arg value="p"/>
+    <arg name="colors"/>
+
+    <!-- Include the whole Zend standard -->
+    <rule ref="PSR2"/>
+
+    <file>src</file>
+    <file>test</file>
+</ruleset>
