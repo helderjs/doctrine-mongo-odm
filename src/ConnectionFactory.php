@@ -10,40 +10,79 @@ use Interop\Container\ContainerInterface;
 class ConnectionFactory
 {
     /**
+     * The name of the configuration
+     *
+     * @var string
+     */
+    private $default;
+
+    /**
+     * ConnectionFactory constructor.
+     * Set the default configuration
+     *
+     * @param string $default
+     */
+    public function __construct($default = 'odm_default')
+    {
+        $this->default = $default;
+    }
+
+    /**
+     * Get the configuration options
+     *
+     * @param ContainerInterface $container
+     * @param $name
+     * @return mixed
+     */
+    private function getDoctrineConfiguration(ContainerInterface $container, $name)
+    {
+        $options = [];
+
+        if ($container->has('doctrine')) {
+            $options = $container->get('doctrine');
+        }
+
+        if ($container->has('config')) {
+            $config = $container->get('config');
+
+            if (isset($config['doctrine'])) {
+                $options = $config['doctrine'];
+            }
+        }
+
+        if (!empty($options) && isset($options[$name])) {
+            $options = $options[$name];
+        }
+
+        return isset($options[$this->default]) ? $options[$this->default] : $options;
+    }
+
+    /**
      * @param ContainerInterface $container
      * @return Connection
      * @throws InvalidConfigException for invalid config service values.
      */
     public function __invoke(ContainerInterface $container)
     {
-        $options = $container->has('config') ? $container->get('config') : [];
-
-        if (!isset($options['doctrine']) || !isset($options['doctrine']['connection'])) {
-            return new Connection();
-        }
-
-        $default = !empty($options['doctrine']['default']) ? $options['doctrine']['default'] : 'odm_default';
-
-        // Doctrine configuration options
-        $options = $options['doctrine']['connection'];
-
-        if (!isset($options[$default])) {
-            throw new InvalidConfigException(sprintf('Doctrine configuration for %s not found.', $default));
-        }
-
         try {
-            $connectionString = isset($options[$default]['connection_string'])
-                ? $options[$default]['connection_string'] : null;
+            $options = $this->getDoctrineConfiguration($container, 'connection');
+
+            if (empty($options)) {
+                return new Connection();
+            }
+
+            $connectionString = isset($options['connection_string'])
+                ? $options['connection_string'] : null;
             $dbName = null;
             if (empty($connectionString)) {
                 $connectionString = 'mongodb://';
-                $user = $options[$default]['user'];
-                $password = $options[$default]['password'];
-                $dbName = $options[$default]['dbname'];
+                $user = $options['user'];
+                $password = $options['password'];
+                $dbName = $options['dbname'];
                 if ($user && $password) {
                     $connectionString .= $user . ':' . $password . '@';
                 }
-                $connectionString .= $options[$default]['server'] . ':' . $options[$default]['port'];
+                $connectionString .= $options['server'] . ':' . $options['port'];
                 if ($dbName) {
                     $connectionString .= '/' . $dbName;
                 }
@@ -70,7 +109,7 @@ class ConnectionFactory
                 }
             }
 
-            return new Connection($connectionString, $options[$default]['options'], $configuration);
+            return new Connection($connectionString, $options['options'], $configuration);
         } catch (\Exception $e) {
             throw new InvalidConfigException($e->getMessage());
         }
