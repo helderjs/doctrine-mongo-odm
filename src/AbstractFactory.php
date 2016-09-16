@@ -1,9 +1,20 @@
 <?php
-
+/**
+ * DoctrineMongoODM Component
+ *
+ * @see       https://github.com/helderjs/doctrine-mongo-odm
+ * @copyright @copyright Copyright (c) 2016 Helder Santana
+ * @license   https://github.com/helderjs/doctrine-mongo-odm/blob/master/LICENSE MIT License
+ */
 namespace Helderjs\Component\DoctrineMongoODM;
 
 use Interop\Container\ContainerInterface;
 
+/**
+ * Class AbstractFactory
+ *
+ * @package Helderjs\Component\DoctrineMongoODM
+ */
 abstract class AbstractFactory
 {
     /**

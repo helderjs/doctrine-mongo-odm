@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DoctrineMongoODM Component
+ *
+ * @see       https://github.com/helderjs/doctrine-mongo-odm
+ * @copyright @copyright Copyright (c) 2016 Helder Santana
+ * @license   https://github.com/helderjs/doctrine-mongo-odm/blob/master/LICENSE MIT License
+ */
 namespace Helderjs\Component\DoctrineMongoODM;
 
 use Doctrine\MongoDB\Connection;
@@ -7,6 +13,11 @@ use Doctrine\ODM\MongoDB\Configuration;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Interop\Container\ContainerInterface;
 
+/**
+ * Class ConnectionFactory
+ *
+ * @package Helderjs\Component\DoctrineMongoODM
+ */
 class ConnectionFactory extends AbstractFactory
 {
     /**

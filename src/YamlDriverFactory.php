@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DoctrineMongoODM Component
+ *
+ * @see       https://github.com/helderjs/doctrine-mongo-odm
+ * @copyright @copyright Copyright (c) 2016 Helder Santana
+ * @license   https://github.com/helderjs/doctrine-mongo-odm/blob/master/LICENSE MIT License
+ */
 namespace Helderjs\Component\DoctrineMongoODM;
 
 use Doctrine\ODM\MongoDB\Mapping\Driver\SimplifiedYamlDriver;
@@ -7,6 +13,11 @@ use Doctrine\ODM\MongoDB\Mapping\Driver\YamlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Interop\Container\ContainerInterface;
 
+/**
+ * Class YamlDriverFactory
+ *
+ * @package Helderjs\Component\DoctrineMongoODM
+ */
 class YamlDriverFactory extends AbstractFactory
 {
     /**

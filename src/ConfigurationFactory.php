@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DoctrineMongoODM Component
+ *
+ * @see       https://github.com/helderjs/doctrine-mongo-odm
+ * @copyright @copyright Copyright (c) 2016 Helder Santana
+ * @license   https://github.com/helderjs/doctrine-mongo-odm/blob/master/LICENSE MIT License
+ */
 namespace Helderjs\Component\DoctrineMongoODM;
 
 use Doctrine\Common\Cache\ArrayCache;
@@ -8,6 +14,11 @@ use Doctrine\ODM\MongoDB\Types\Type;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Interop\Container\ContainerInterface;
 
+/**
+ * Class ConfigurationFactory
+ *
+ * @package Helderjs\Component\DoctrineMongoODM
+ */
 class ConfigurationFactory extends AbstractFactory
 {
     /**
