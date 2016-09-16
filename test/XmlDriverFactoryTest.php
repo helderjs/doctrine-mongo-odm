@@ -2,12 +2,12 @@
 
 namespace Helderjs\Test\Component\DoctrineMongoODM;
 
-use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
-use Helderjs\Component\DoctrineMongoODM\AnnotationDriverFactory;
+use Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
+use Helderjs\Component\DoctrineMongoODM\XmlDriverFactory;
 use Interop\Container\ContainerInterface;
 
-class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
+class XmlDriverFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ContainerInterface
@@ -21,7 +21,7 @@ class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCallingFactoryWithNoConfigReturns()
     {
-        $factory = new AnnotationDriverFactory();
+        $factory = new XmlDriverFactory();
 
         $this->container->has('doctrine')->willReturn(false);
         $this->container->has('config')->willReturn(false);
@@ -36,7 +36,7 @@ class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
         $factory($this->container->reveal());
 
         $this->container->has('doctrine')->willReturn(true);
-        $this->container->get('doctrine')->willReturn([]);
+        $this->container->get('config')->willReturn([]);
         $this->container->has('config')->willReturn(false);
         $this->expectException(InvalidConfigException::class);
         $factory($this->container->reveal());
@@ -44,7 +44,7 @@ class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCallingFactoryWithEmptyDoctrineConfig()
     {
-        $factory = new AnnotationDriverFactory();
+        $factory = new XmlDriverFactory();
 
         $this->container->has('doctrine')->willReturn(false);
         $this->container->has('config')->willReturn(true);
@@ -55,7 +55,7 @@ class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCallingFactoryWithEmptyDriverDoctrineConfig()
     {
-        $factory = new AnnotationDriverFactory();
+        $factory = new XmlDriverFactory();
 
         $this->container->has('doctrine')->willReturn(false);
         $this->container->has('config')->willReturn(true);
@@ -70,12 +70,12 @@ class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
             'doctrine' => [
                 'driver' => [
                     'odm_default' => [
-                        AnnotationDriver::class => [],
+                        XmlDriver::class => [],
                     ],
                 ],
             ],
         ];
-        $factory = new AnnotationDriverFactory();
+        $factory = new XmlDriverFactory();
 
         $this->container->has('doctrine')->willReturn(false);
         $this->container->has('config')->willReturn(true);
@@ -84,26 +84,57 @@ class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
         $factory($this->container->reveal());
     }
 
-    public function testCallingFactoryWithDriverDoctrineConfig()
+    public function testCallingFactoryWithXmlDriverDoctrineConfig()
     {
         $options = [
             'doctrine' => [
                 'driver' => [
                     'odm_default' => [
-                        AnnotationDriver::class => [
-                            'documents_dir' => ['./src/myApp/Documents'],
+                        XmlDriver::class => [
+                            'simplified' => false,
+                            'xml_dir' => [
+                                '/path/to/files1',
+                                '/path/to/files2',
+                            ]
                         ],
                     ],
                 ],
             ],
         ];
-        $factory = new AnnotationDriverFactory();
+        $factory = new XmlDriverFactory();
 
         $this->container->has('doctrine')->willReturn(false);
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn($options);
 
         $driver = $factory($this->container->reveal());
-        $this->assertInstanceOf(AnnotationDriver::class, $driver);
+        $this->assertInstanceOf(XmlDriver::class, $driver);
+    }
+
+    public function testCallingFactoryWithSimplifiedXmlDriverDoctrineConfig()
+    {
+        $options = [
+            'doctrine' => [
+                'driver' => [
+                    'odm_default' => [
+                        XmlDriver::class => [
+                            'simplified' => true,
+                            'xml_dir' => [
+                                '/path/to/files1' => 'MyProject\Entities',
+                                '/path/to/files2' => 'OtherProject\Entities'
+                            ]
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        $factory = new XmlDriverFactory();
+
+        $this->container->has('doctrine')->willReturn(false);
+        $this->container->has('config')->willReturn(true);
+        $this->container->get('config')->willReturn($options);
+
+        $driver = $factory($this->container->reveal());
+        $this->assertInstanceOf(XmlDriver::class, $driver);
     }
 }
