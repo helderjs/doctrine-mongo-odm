@@ -11,7 +11,7 @@ namespace Helderjs\Test\Component\DoctrineMongoODM;
 use Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Helderjs\Component\DoctrineMongoODM\XmlDriverFactory;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class XmlDriverFactoryTest extends \PHPUnit_Framework_TestCase
 {

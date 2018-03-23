@@ -9,13 +9,13 @@
 namespace Helderjs\Component\DoctrineMongoODM\Exception;
 
 use DomainException;
-use Interop\Container\Exception\ContainerException;
+use Psr\Container\ContainerExceptionInterface;
 
 /**
  * Class InvalidConfigException
  *
  * @package Helderjs\Component\DoctrineMongoODM\Exception
  */
-class InvalidConfigException extends DomainException implements ContainerException
+class InvalidConfigException extends DomainException implements ContainerExceptionInterface
 {
 }

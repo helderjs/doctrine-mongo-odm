@@ -8,7 +8,7 @@
  */
 namespace Helderjs\Component\DoctrineMongoODM;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class AbstractFactory

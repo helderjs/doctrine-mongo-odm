@@ -11,7 +11,7 @@ namespace Helderjs\Test\Component\DoctrineMongoODM;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
 use Helderjs\Component\DoctrineMongoODM\AnnotationDriverFactory;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class AnnotationDriverFactoryTest extends \PHPUnit_Framework_TestCase
 {
