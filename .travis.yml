@@ -11,15 +11,10 @@ php:
 cache:
   directories:
     - $HOME/.composer/cache
-    - vendor
 
 matrix:
   fast_finish: true
   include:
-    - php: 5.6
-    - php: 7.0
-    - php: 7.1
-    - php: 7.2
     - php: hhvm
   allow_failures:
     - php: hhvm
@@ -28,6 +23,8 @@ before_install:
   - composer self-update
 
 install:
+  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "5." ]]; then yes '' | pecl -q install -f mongo-1.5.8; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then pecl install -f mongodb-stable; fi
   - travis_retry composer install --no-interaction --ignore-platform-reqs --prefer-source
   - composer info -i
 
