@@ -51,10 +51,5 @@
     ],
     "cs": "vendor/bin/phpcs",
     "test": "vendor/bin/phpunit"
-  },
-  "config": {
-    "platform": {
-      "ext-mongo": "1.6.16"
-    }
   }
 }
