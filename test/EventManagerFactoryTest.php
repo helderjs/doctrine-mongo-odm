@@ -14,7 +14,7 @@ use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Helderjs\Test\Component\DoctrineMongoODM\Asset\TestEventSubscriber;
 use Helderjs\Test\Component\DoctrineMongoODM\Asset\TestEventSubscriber2;
 use Helderjs\Test\Component\DoctrineMongoODM\Asset\TestEventSubscriber3;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class EventManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

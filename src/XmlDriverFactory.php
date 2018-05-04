@@ -11,7 +11,7 @@ namespace Helderjs\Component\DoctrineMongoODM;
 use Doctrine\ODM\MongoDB\Mapping\Driver\SimplifiedXmlDriver;
 use Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class XmlDriverFactory
@@ -29,7 +29,7 @@ class XmlDriverFactory extends AbstractFactory
     {
         $options = $this->getDoctrineConfiguration($container, 'driver');
 
-        if (empty($options)) {
+        if (empty($options[XmlDriver::class])) {
             throw new InvalidConfigException(sprintf('Doctrine driver configuration not found.'));
         }
 

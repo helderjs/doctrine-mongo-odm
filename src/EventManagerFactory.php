@@ -11,7 +11,7 @@ namespace Helderjs\Component\DoctrineMongoODM;
 use Doctrine\Common\EventManager;
 use Doctrine\Common\EventSubscriber;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class EventManagerFactory

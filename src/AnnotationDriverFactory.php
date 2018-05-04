@@ -10,7 +10,7 @@ namespace Helderjs\Component\DoctrineMongoODM;
 
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class AnnotationDriverFactory
@@ -28,7 +28,7 @@ class AnnotationDriverFactory extends AbstractFactory
     {
         $options = $this->getDoctrineConfiguration($container, 'driver');
 
-        if (empty($options)) {
+        if (empty($options[AnnotationDriver::class])) {
             throw new InvalidConfigException(sprintf('Doctrine driver configuration not found.'));
         }
 

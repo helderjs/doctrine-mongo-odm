@@ -16,7 +16,7 @@ use Doctrine\ODM\MongoDB\Mapping\ClassMetadataFactory;
 use Doctrine\ODM\MongoDB\Repository\DefaultRepositoryFactory;
 use Helderjs\Component\DoctrineMongoODM\DocumentManagerFactory;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class DocumentManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -16,7 +16,7 @@ use Helderjs\Component\DoctrineMongoODM\ConfigurationFactory;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Helders\Test\Component\DoctrineMongoODM\Asset\MyFilter;
 use Helders\Test\Component\DoctrineMongoODM\Asset\MyType;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class ConfigurationFactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -10,7 +10,7 @@ namespace Helderjs\Component\DoctrineMongoODM;
 
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class MappingDriverChainFactory
