@@ -13,7 +13,7 @@ use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Helderjs\Component\DoctrineMongoODM\MappingDriverChainFactory;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class MappingDriverChainFactoryTest extends \PHPUnit_Framework_TestCase
 {

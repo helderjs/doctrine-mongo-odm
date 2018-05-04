@@ -1,4 +1,5 @@
 {
+
   "name": "helderjs/doctrine-mongo-odm",
   "description": "DoctrineMongoODM component for (Micro-)Framework",
   "type": "library",
@@ -55,4 +56,5 @@
     "cs": "vendor/bin/phpcs",
     "test": "vendor/bin/phpunit"
   }
+
 }
