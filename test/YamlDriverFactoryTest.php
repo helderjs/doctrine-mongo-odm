@@ -11,7 +11,7 @@ namespace Helderjs\Test\Component\DoctrineMongoODM;
 use Doctrine\ODM\MongoDB\Mapping\Driver\YamlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
 use Helderjs\Component\DoctrineMongoODM\YamlDriverFactory;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class YamlDriverFactoryTest extends \PHPUnit_Framework_TestCase
 {

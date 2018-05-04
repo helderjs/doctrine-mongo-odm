@@ -11,7 +11,7 @@ namespace Helderjs\Component\DoctrineMongoODM;
 use Doctrine\ODM\MongoDB\Mapping\Driver\SimplifiedYamlDriver;
 use Doctrine\ODM\MongoDB\Mapping\Driver\YamlDriver;
 use Helderjs\Component\DoctrineMongoODM\Exception\InvalidConfigException;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class YamlDriverFactory
@@ -29,7 +29,7 @@ class YamlDriverFactory extends AbstractFactory
     {
         $options = $this->getDoctrineConfiguration($container, 'driver');
 
-        if (empty($options)) {
+        if (empty($options[YamlDriver::class])) {
             throw new InvalidConfigException(sprintf('Doctrine driver configuration not found.'));
         }
 
