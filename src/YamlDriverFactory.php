@@ -29,7 +29,7 @@ class YamlDriverFactory extends AbstractFactory
     {
         $options = $this->getDoctrineConfiguration($container, 'driver');
 
-        if (empty($options[YamlDriver::class])) {
+        if (empty($options)) {
             throw new InvalidConfigException(sprintf('Doctrine driver configuration not found.'));
         }
 
