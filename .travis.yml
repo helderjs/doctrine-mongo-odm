@@ -20,6 +20,7 @@ matrix:
     - php: hhvm
 
 before_install:
+  - pecl install -f mongodb-stable
   - composer config "platform.ext-mongo" "1.6.16"
   - composer self-update
 
