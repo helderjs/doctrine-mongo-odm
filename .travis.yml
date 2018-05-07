@@ -20,7 +20,7 @@ matrix:
     - php: hhvm
 
 before_install:
-  - composer config "platform.ext-mongo"
+  - composer config "platform.ext-mongo" "1.6.16"
   - composer self-update
 
 install:
