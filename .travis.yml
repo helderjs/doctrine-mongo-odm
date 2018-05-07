@@ -20,11 +20,10 @@ matrix:
     - php: hhvm
 
 before_install:
+  - composer config "platform.ext-mongo"
   - composer self-update
 
 install:
-  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "5." ]]; then yes '' | pecl -q install -f mongo-1.5.8; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then pecl install -f mongodb-stable; fi
   - travis_retry composer install --no-interaction --prefer-source
   - composer info -i
 
