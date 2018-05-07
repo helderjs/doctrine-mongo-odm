@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/helderjs/doctrine-mongo-odm.svg?branch=master)](https://travis-ci.org/helderjs/doctrine-mongo-odm)
 
 It's a component based on [DoctrineMongoODMModule](https://github.com/doctrine/DoctrineMongoODMModule) that provides [DoctrineMongoDbODM](http://docs.doctrine-project.org/projects/doctrine-mongodb-odm) integration for
-several (Micro-)frameworks. The goal is be light and easy to configure, for that the library rely just on the [container-interop](https://github.com/container-interop/container-interop) and [MongoBD ODM](http://docs.doctrine-project.org/projects/doctrine-mongodb-odm/en/latest/). 
+several (Micro-)frameworks. The goal is be light and easy to configure, for that the library rely just on the [PSR-11](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-11-container.md) and [MongoBD ODM](http://docs.doctrine-project.org/projects/doctrine-mongodb-odm/en/latest/). 
 
 ## Requirements
 
@@ -13,7 +13,7 @@ several (Micro-)frameworks. The goal is be light and easy to configure, for that
 
 ps.: if using [mongo-php-adapter](https://github.com/alcaeus/mongo-php-adapter) you should add and install it first in you project. After this the library will declare to composer that it provides the ext-mongo. 
 
-We recommend using a dependency injection container, and typehint against [container-interop](https://github.com/container-interop/container-interop).
+We recommend using a dependency injection container, and typehint against [PSR-11](https://github.com/php-fig/container).
 
 ## Installation
 
